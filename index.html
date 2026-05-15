@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio | Développeur & Designer Débutant</title>
+    <meta name="description" content="Portfolio d'un développeur et designer débutant passionné par le web moderne.">
+    <!-- Tailwind CSS via CDN (pour commencer rapidement) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Police Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    
+    <style>
+        /* Custom styles pour compléter Tailwind */
+        :root {
+            --primary: #3B82F6;
+            --secondary: #10B981;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Animation pour le scroll */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Style pour les cartes de projet */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Animation pour la barre de progression */
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
+    
+    <!-- Configuration Tailwind personnalisée -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F9FAFB'
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light text-dark">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-primary">Portfolio<span class="text-secondary">.</span></a>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="font-medium hover:text-primary transition">Accueil</a>
+                    <a href="#projets" class="font-medium hover:text-primary transition">Projets</a>
+                    <a href="#competences" class="font-medium hover:text-primary transition">Compétences</a>
+                    <a href="#apropos" class="font-medium hover:text-primary transition">À propos</a>
+                    <a href="#contact" class="font-medium hover:text-primary transition">Contact</a>
+                </div>
+                
+                <!-- Bouton mobile -->
+                <button id="menuBtn" class="md:hidden text-dark">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Menu Mobile -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-2">
+                <div class="flex flex-col space-y-4">
+                    <a href="#accueil" class="font-medium hover:text-primary transition">Accueil</a>
+                    <a href="#projets" class="font-medium hover:text-primary transition">Projets</a>
+                    <a href="#competences" class="font-medium hover:text-primary transition">Compétences</a>
+                    <a href="#apropos" class="font-medium hover:text-primary transition">À propos</a>
+                    <a href="#contact" class="font-medium hover:text-primary transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="pt-24 pb-16 md:pt-32 md:pb-24 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Texte -->
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <p class="text-secondary font-semibold mb-2">👋 Bonjour, je suis</p>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                        <span class="text-dark">Développeur</span> & <br>
+                        <span class="text-primary">Designer</span> <span class="text-secondary">Débutant</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                        Passionné par la création web, j'apprends chaque jour à construire des interfaces modernes, accessibles et performantes.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projets" class="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition shadow-md">
+                            Voir mes projets <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#contact" class="border-2 border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition">
+                            Me contacter
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Illustration/Image -->
+                <div img src="luca.jpeg"alt class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-white text-8xl md:text-9xl"></i>
+                        </div>
+                        <!-- Éléments décoratifs -->
+                        <div class="absolute -top-4 -left-4 w-20 h-20 bg-yellow-400 rounded-full opacity-20 animate-pulse-slow"></div>
+                        <div class="absolute -bottom-4 -right-4 w-16 h-16 bg-green-400 rounded-full opacity-20 animate-bounce-slow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projets" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mes <span class="text-primary">Projets</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Découvrez mes réalisations, des projets simples mais concrets qui illustrent mon apprentissage.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projet 1 -->
+                <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-cyan-400 flex items-center justify-center">
+                        <i class="fas fa-globe text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold">Mon Portfolio</h3>
+                            <span class="bg-blue-100 text-primary text-xs font-semibold px-3 py-1 rounded-full">HTML/CSS/JS</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            Le site sur lequel vous vous trouvez ! Codé en HTML, CSS  et JavaScript.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded">HTML5</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded">JavaScript</span>
+                            <span class="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded">Responsive</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-primary hover:text-blue-700 font-medium">
+                                <i class="fab fa-github mr-1"></i> Code
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+            
+            <div class="text-center mt-12">
+                <a href="https://github.com/ndriatianahenintsoaluca08-ai" target="_blank" class="inline-flex items-center text-dark hover:text-primary font-medium">
+                    Voir plus sur GitHub <i class="fab fa-github ml-2 text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="competences" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mes <span class="text-primary">Compétences</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Technologies et outils que j'utilise et que j'apprends actuellement.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Compétences Techniques -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-code text-primary mr-3"></i> Développement
+                    </h3>
+                    
+                    <!-- Compétence 1 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">HTML5 / CSS3</span>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Compétence 2 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">JavaScript</span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Compétence 4 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Linux</span>
+                        </div>
+                    </div>
+
+                     <!-- Compétence 5 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">MERISE</span>
+                        </div>
+                    </div>
+
+                     <!-- Compétence 6 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Langage de programmation : Python , langage C</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Compétence 7 -->
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium">Git & GitHub</span>
+
+                    </div>
+                </div>
+                
+                <!-- Compétences Design & Outils -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-palette text-secondary mr-3"></i> Design & Outils
+                    </h3>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Outil 1 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                            <i class="fab fa-figma text-3xl text-purple-600 mb-3"></i>
+                            <h4 class="font-bold">Figma</h4>
+                            <p class="text-sm text-gray-600 mt-1">Prototypage UI/UX</p>
+                        </div>
+                        
+                        <!-- Outil 2 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                            <i class="fab fa-git-alt text-3xl text-orange-600 mb-3"></i>
+                            <h4 class="font-bold">Git</h4>
+                            <p class="text-sm text-gray-600 mt-1">Versionning</p>
+                        </div>
+                        
+                        <!-- Outil 3 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                            <i class="fas fa-mobile-alt text-3xl text-blue-600 mb-3"></i>
+                            <h4 class="font-bold">Responsive</h4>
+                            <p class="text-sm text-gray-600 mt-1">Design adaptatif</p>
+                        </div>
+                        
+                        <!-- Outil 4 -->
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+                            <i class="fas fa-bolt text-3xl text-yellow-600 mb-3"></i>
+                            <h4 class="font-bold">VS Code</h4>
+                            <p class="text-sm text-gray-600 mt-1">Éditeur de code</p>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <!-- Photo/Illustration -->
+                <div  img src="luca.png"alt class="lg:w-2/5 mb-12 lg:mb-0">
+                    <div class="relative">
+                        <div class="w-64 h-64 mx-auto lg:mx-0 bg-gradient-to-br from-primary to-secondary rounded-full overflow-hidden border-8 border-white shadow-2xl">
+                            <!-- Remplacez par votre photo -->
+                            <div class="w-full h-full bg-blue-200 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-7xl"></i>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+                
+                <!-- Texte -->
+                <div class="lg:w-3/5 lg:pl-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">À propos de <span class="text-primary">moi</span></h2>
+                    
+                    <div class="mb-6">
+                        <p class="text-gray-700 mb-4">
+                            Passionné par la technologie et la création numérique, je me suis lancé dans l'apprentissage du développement web et du design d'interface. 
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Mon objectif ? Créer des expériences web à la fois belles, fonctionnelles et accessibles à tous. J'aime particulièrement le côté "puzzle" du développement : résoudre des problèmes et voir une idée prendre vie ligne par ligne.
+                        </p>
+                        <p class="text-gray-700">
+                            En dehors du code, je m'intéresse au design UI/UX, aux nouvelles technologies et aux bonnes pratiques d'accessibilité web.
+                        </p>
+                    </div>
+                    
+                    <!-- Info personnelles -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-graduate text-primary mr-3"></i>
+                            <div>
+                                <p class="font-semibold">Formation</p>
+                                <p class="text-gray-600">Autodidacte & etudier a INSI</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-primary mr-3"></i>
+                            <div>
+                                <p class="font-semibold">Localisation</p>
+                                <p class="text-gray-600">Madagascar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-3"></i>
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-gray-600">ndriatianahenintsoaluca08@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-bullseye text-primary mr-3"></i>
+                            <div>
+                                <p class="font-semibold">Objectif</p>
+                                <p class="text-gray-600">Premier emploi en dev web</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Citation -->
+                    <div class="bg-gray-50 p-5 rounded-xl border-l-4 border-primary">
+                        <p class="italic text-gray-700">
+                            "Le meilleur moment pour planter un arbre était il y a 20 ans. Le deuxième meilleur moment est maintenant."
+                        </p>
+                        <p class="text-right mt-2 text-gray-600">- Proverbe chinois</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-16 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Me <span class="text-primary">contacter</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Vous avez un projet, une question ou simplement envie d'échanger ? N'hésitez pas à me contacter !
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- Formulaire de contact -->
+                <form id="contactForm" class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Nom complet *</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email *</label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-700 font-medium mb-2">Sujet</label>
+                        <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition">
+                    </div>
+                    
+                    <div class="mb-8">
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Message *</label>
+                        <textarea id="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary text-white font-medium py-3 px-6 rounded-lg hover:bg-blue-700 transition shadow-md flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Envoyer le message
+                    </button>
+                    
+                    <p class="text-center text-gray-500 text-sm mt-4">
+                        * Champs obligatoires
+                    </p>
+                </form>
+                
+                <!-- Réseaux sociaux -->
+                <div class="flex justify-center space-x-6 mt-12">
+                    <a href="https://github.com/ndriatianahenintsoaluca08-ai" target="_blank" class="bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition">
+                        <i class="fab fa-github text-2xl text-gray-800"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/votreusername" target="_blank" class="bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition">
+                        <i class="fab fa-linkedin-in text-2xl text-blue-700"></i>
+                    </a>
+                    <a href="https://twitter.com/votreusername" target="_blank" class="bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition">
+                        <i class="fab fa-twitter text-2xl text-sky-500"></i>
+                    </a>
+                    <a href="mailto:ndriatianahenintsoaluca08@gmail.com" class="bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:scale-110 transition">
+                        <i class="fas fa-envelope text-2xl text-gray-700"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold text-white">Portfolio<span class="text-secondary">.</span></a>
+                    <p class="text-gray-400 mt-2">Développeur & Designer Débutant</p>
+                </div>
+                
+                <div class="mb-6 md:mb-0">
+                    <p class="text-gray-400">© <span id="currentYear"></span> Mon Portfolio. Tous droits réservés.</p>
+                </div>
+                
+                <div>
+                    <a href="#accueil" class="text-gray-400 hover:text-white transition flex items-center">
+                        <i class="fas fa-arrow-up mr-2"></i> Retour en haut
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>Développé avec <i class="fas fa-heart text-red-500 mx-1"></i> et beaucoup de café <i class="fas fa-coffee ml-1"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Menu mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Année actuelle dans le footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Formulaire de contact (simulation)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupération des valeurs
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Simulation d'envoi
+            alert(`Merci ${name} ! Votre message a été envoyé. Je vous répondrai à ${email} dès que possible.`);
+            
+            // Réinitialisation du formulaire
+            this.reset();
+        });
+        
+        // Animation des barres de compétences au scroll
+        function animateSkillsOnScroll() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // La largeur est déjà définie dans le style inline
+                        // On ajoute juste une classe pour déclencher la transition
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            skillBars.forEach(bar => {
+                bar.style.opacity = '0';
+                observer.observe(bar);
+            });
+        }
+        
+        // Initialiser les animations au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            animateSkillsOnScroll();
+            
+            // Smooth scroll pour les ancres
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
